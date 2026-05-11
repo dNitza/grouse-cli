@@ -69,7 +69,7 @@ module Grouse
       option :tags,    type: :string, aliases: "-t", desc: "Comma-separated tags"
       option :content, type: :string, aliases: "-c", desc: "Optional notes"
       def bookmark(url = nil)
-        die("URL is required: grouse-cli post bookmark URL [options]") unless url && !url.empty?
+        die("URL is required: grouse post bookmark URL [options]") unless url && !url.empty?
 
         params = [["h", "entry"], ["bookmark-of", url]]
         params << ["name", options[:name]]    if options[:name]
