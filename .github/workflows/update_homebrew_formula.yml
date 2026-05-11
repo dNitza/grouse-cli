@@ -69,7 +69,7 @@ jobs:
             exit 0
           fi
           git add "${FORMULA_PATH}"
-          git commit -m "imsg ${{ steps.meta.outputs.version }}: bump formula"
+          git commit -m "grouse-cli ${{ steps.meta.outputs.version }}: bump formula"
           git remote set-url origin "https://x-access-token:${{ secrets.HOMEBREW_TAP_TOKEN }}@github.com/${{ env.TAP_REPO }}.git"
           git pull --rebase origin main
           git push origin HEAD:main
