@@ -5,7 +5,7 @@ A command-line tool for publishing to your [Grouse](https://grouse.blog) blog. S
 ## Installation
 
 ```sh
-brew tap dnitza/homebrew-tap
+brew tap dnitza/tap
 brew install grouse-cli
 ```
 
