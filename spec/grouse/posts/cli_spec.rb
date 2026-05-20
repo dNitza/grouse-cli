@@ -189,6 +189,36 @@ RSpec.describe Grouse::Posts::CLI do
     end
   end
 
+  # ─── like ────────────────────────────────────────────────────────────────────
+
+  describe "like" do
+    let(:liked_url) { "https://example.com/a-great-post" }
+
+    it "posts a like-of entry" do
+      stub_micropub
+      run("like", liked_url)
+      expect(a_request(:post, micropub_url).with(body: hash_including(
+        "h" => "entry",
+        "like-of" => liked_url
+      ))).to have_been_made
+    end
+
+    it "prints the Location URL returned by the server" do
+      stub_micropub
+      old_out = $stdout
+      $stdout = StringIO.new
+      described_class.start(["like", liked_url])
+      output = $stdout.string
+      expect(output).to include(location)
+    ensure
+      $stdout = old_out
+    end
+
+    it "exits when URL is missing" do
+      expect { run("like") }.to raise_error(SystemExit)
+    end
+  end
+
   # ─── bookmark ────────────────────────────────────────────────────────────────
 
   describe "bookmark" do

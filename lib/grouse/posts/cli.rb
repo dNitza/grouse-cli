@@ -64,6 +64,15 @@ module Grouse
         post_micropub(params)
       end
 
+      desc "like URL", "Like a post or page"
+      def like(url = nil)
+        die("URL is required: grouse post like URL") unless url && !url.empty?
+
+        params = [["h", "entry"], ["like-of", url]]
+
+        post_micropub(params)
+      end
+
       desc "bookmark URL", "Save a bookmark"
       option :name,    type: :string, aliases: "-n", desc: "Bookmark title"
       option :tags,    type: :string, aliases: "-t", desc: "Comma-separated tags"

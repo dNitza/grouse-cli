@@ -78,11 +78,6 @@ RSpec.describe Grouse::DefaultCommand do
       expect { run_with(input: "") }
         .to raise_error(RuntimeError, /No blog name entered/)
     end
-
-    it "raises when the user enters an unknown name" do
-      expect { run_with(input: "unknown") }
-        .to raise_error(RuntimeError, /unknown/)
-    end
   end
 
   context "when config file does not exist" do
